@@ -46,7 +46,7 @@ public class MemberViewController implements Initializable {
 	
 	private final ObservableList<Member> data = FXCollections.observableArrayList();
 	ArrayList<Member> memberList;
-	MemberService memberService;
+	MemberService memberService;  
 	
 	TestController ts;
 	
