@@ -17,7 +17,7 @@
       <Label layoutX="190.0" layoutY="521.0" text="Copyright. @2019 SUNGJIN97" textFill="#422bb5">
          <font>
             <Font name="System Italic" size="14.0" />
-         </font>
+         </font> 
       </Label>
       <GridPane layoutX="18.0" layoutY="25.0" prefHeight="124.0" prefWidth="364.0">
         <columnConstraints>
