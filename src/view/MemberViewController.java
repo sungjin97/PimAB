@@ -15,6 +15,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -24,6 +25,10 @@ public class MemberViewController implements Initializable {
 	@FXML	private Button btnRegister;
 	@FXML	private Button btnUpdate;
 	@FXML	private Button btnDelete;
+	
+	@FXML	private Button btnExecute;
+	@FXML	private TextArea taExecute;
+	@FXML	private TextField tfExecute;
 	
 	@FXML	private TextField tfID;
 	@FXML	private PasswordField tfPW;
@@ -49,16 +54,25 @@ public class MemberViewController implements Initializable {
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		memberService = new MemberServiceImpl();
 		
-		columnName.setCellValueFactory(cvf -> cvf.getValue().unameProperty());
+		/*columnName.setCellValueFactory(cvf -> cvf.getValue().unameProperty());
 		columnID.setCellValueFactory(cvf -> cvf.getValue().uidProperty());
 		//columnPW.setCellValueFactory(cvf -> cvf.getValue().upwProperty());
 		
 		tableViewMember.getSelectionModel().selectedItemProperty().addListener(
 				(observable, oldValue, newValue) -> showMemberInfo(newValue));
 		
-		btnRegister.setOnMouseClicked(event -> handleCreate());		
-		// btnDelete.setOnMouseClicked(e -> handleDelete());
-		loadMemberTableView();
+				
+		// btnDelete.setOnMouseClicked(e -> handleDelete());*/
+		btnExecute.setOnMouseClicked(event -> handleExecute());
+		
+		//loadMemberTableView();
+		
+	}
+	String str = "";
+	@FXML 
+	private void handleExecute() { // event source, listener, handler
+		str = taExecute.getText();
+		taExecute.setText(str + "Hello JavaFX " + tfExecute.getText() + "\n");
 	}
 	
 	private void showMemberInfo(Member member) {
@@ -91,9 +105,9 @@ public class MemberViewController implements Initializable {
 			if(memberService.create(newMember) >= 0)	
 				data.add(newMember);
 			else
-				showAlert("ID Áßº¹À¸·Î µî·ÏÇÒ ¼ö ¾ø½À´Ï´Ù.");
+				showAlert("ID ï¿½ßºï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.");
 		} else
-			showAlert("ID´Â ÇÊ¼öÇ×¸ñ ÀÔ´Ï´Ù.");
+			showAlert("IDï¿½ï¿½ ï¿½Ê¼ï¿½ï¿½×¸ï¿½ ï¿½Ô´Ï´ï¿½.");
 	}
 	@FXML 
 	private void handleUpdate() {
@@ -104,7 +118,7 @@ public class MemberViewController implements Initializable {
 			tableViewMember.getItems().set(selectedIndex, newMember);
 			memberService.update(newMember);			
 		} else {
-			showAlert("¼öÁ¤À» ÇÒ ¼ö ¾ø½À´Ï´Ù.");          
+			showAlert("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.");          
         }
 	}
 	
@@ -114,15 +128,15 @@ public class MemberViewController implements Initializable {
 		if (selectedIndex >= 0) {
 			memberService.delete(tableViewMember.getItems().remove(selectedIndex));			
 		} else {
-			showAlert("»èÁ¦¸¦ ÇÒ ¼ö ¾ø½À´Ï´Ù.");
+			showAlert("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.");
         }
 	}
 	
 	private void showAlert(String message) {
 		Alert alert = new Alert(AlertType.INFORMATION);
         alert.initOwner(mainApp.getRootStage());
-        alert.setTitle("È®ÀÎ");
-        alert.setContentText("È®ÀÎ : " + message);            
+        alert.setTitle("È®ï¿½ï¿½");
+        alert.setContentText("È®ï¿½ï¿½ : " + message);            
         alert.showAndWait();
 	}
 
