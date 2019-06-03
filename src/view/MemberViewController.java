@@ -7,6 +7,8 @@ import java.util.ResourceBundle;
 import application.Main;
 import controller.MemberService;
 import controller.MemberServiceImpl;
+import controller.TestController;
+import controller.TestControllerImpl;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -46,6 +48,8 @@ public class MemberViewController implements Initializable {
 	ArrayList<Member> memberList;
 	MemberService memberService;
 	
+	TestController ts;
+	
 	public MemberViewController() {
 		
 	}
@@ -53,7 +57,7 @@ public class MemberViewController implements Initializable {
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		memberService = new MemberServiceImpl();
-		
+		ts = new TestControllerImpl();
 		/*columnName.setCellValueFactory(cvf -> cvf.getValue().unameProperty());
 		columnID.setCellValueFactory(cvf -> cvf.getValue().uidProperty());
 		//columnPW.setCellValueFactory(cvf -> cvf.getValue().upwProperty());
@@ -72,7 +76,8 @@ public class MemberViewController implements Initializable {
 	@FXML 
 	private void handleExecute() { // event source, listener, handler
 		str = taExecute.getText();
-		taExecute.setText(str + "Hello JavaFX " + tfExecute.getText() + "\n");
+		str = ts.appendTextArea(name);
+		taExecute.setText(str);
 	}
 	
 	private void showMemberInfo(Member member) {
